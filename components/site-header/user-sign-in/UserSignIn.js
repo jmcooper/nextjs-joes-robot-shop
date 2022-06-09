@@ -31,8 +31,8 @@ export default function UserSignIn() {
     </div>
   ) : (
     <>
-      <ActiveLink href='user/sign-in'>Sign In</ActiveLink>
-      <ActiveLink href='user/register' className='cta'>
+      <ActiveLink href='/sign-in'>Sign In</ActiveLink>
+      <ActiveLink href='/register' className='cta'>
         Register
       </ActiveLink>
     </>
