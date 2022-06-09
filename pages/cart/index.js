@@ -37,32 +37,8 @@ export default function Cart() {
     },
   ])
 
-  function renderEmptyCart() {
-    return (
-      <div className={styles.emptyCart}>You have no items in your cart</div>
-    )
-  }
-
   function removeItemFromCart(cartItem) {
     updateCartItems(cartItems.filter(item => item !== cartItem))
-  }
-
-  function renderCartItem(cartItem, i) {
-    return (
-      <li className={styles.cartItem} key={i}>
-        <ProductDetails product={cartItem} >
-          <button onClick={() => removeItemFromCart(cartItem)}>Remove</button >
-        </ProductDetails >
-      </li >
-    )
-  }
-
-  function renderCart() {
-    return (
-      <ul className={styles.cart}>
-        {cartItems.map(renderCartItem)}
-      </ul >
-    )
   }
 
   function getCartTotal() {
@@ -72,6 +48,26 @@ export default function Cart() {
     }, 0)
 
     return currencyFormat(totalCost)
+  }
+
+  function renderEmptyCart() {
+    return (
+      <div className={styles.emptyCart}>You have no items in your cart</div>
+    )
+  }
+
+  function renderCart() {
+    return (
+      <ul className={styles.cart}>
+        {cartItems.map((cartItem, i) => (
+          <li className={styles.cartItem} key={i}>
+            <ProductDetails product={cartItem} >
+              <button onClick={() => removeItemFromCart(cartItem)}>Remove</button >
+            </ProductDetails >
+          </li >
+        ))}
+      </ul >
+    )
   }
 
   return (
