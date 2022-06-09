@@ -9,7 +9,7 @@ import {
   armArticulatedClaw,
   torsoGauged,
   baseSpring,
-} from '../Catalog/images'
+} from '../../public/images/robot-images'
 
 import robotApocalypse from './robot-apocalypse.png'
 
@@ -38,7 +38,7 @@ function Home() {
 
       <ul className={styles.robotPartsCta}>
         <li className={styles.part}>
-          <Link href='/catalog?filter=Heads'>
+          <Link href={{ pathname: '/catalog', query: { filter: 'Heads' } }}>
             <a>
               <div className={styles.image}><Image src={headShredder} alt='Robot Heads' width={180} height={180} /></div>
               <div>ROBOT HEADS</div>
@@ -46,7 +46,7 @@ function Home() {
           </Link>
         </li>
         <li className={styles.part}>
-          <Link href='/catalog?filter=Arms'>
+          <Link href={{ pathname: '/catalog', query: { filter: 'Arms' } }}>
             <a>
               <div className={styles.image}><Image src={armArticulatedClaw} alt='Robot Arms' width={180} height={180} /></div>
               <div>ROBOT ARMS</div>
@@ -54,7 +54,7 @@ function Home() {
           </Link>
         </li>
         <li className={styles.part}>
-          <Link href='/catalog?filter=Torsos'>
+          <Link href={{ pathname: '/catalog', query: { filter: 'Torsos' } }}>
             <a>
               <div className={styles.image}><Image src={torsoGauged} alt='Robot Torsos' width={180} height={180} /></div>
               <div>ROBOT TORSOS</div>
@@ -62,7 +62,7 @@ function Home() {
           </Link>
         </li>
         <li className={styles.part}>
-          <Link href='/catalogfilter=Bases'>
+          <Link href={{ pathname: '/catalog', query: { filter: 'Bases' } }}>
             <a>
               <div className={styles.image}><Image src={baseSpring} alt='Robot Bases' width={180} height={180} /></div>
               <div>ROBOT BASES</div>
@@ -86,7 +86,7 @@ function Home() {
             </div>
           </div>
           <div className={styles.largeText}>WHITE PAPER</div>
-          <Link href=''>
+          <Link href='/'>
             <a className={styles.learnMore}>Learn More</a>
           </Link>
         </div>

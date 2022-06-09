@@ -20,10 +20,10 @@ export default function SiteHeader() {
       <div className={styles.container}>
         <div className={styles.left}>
           <div className={styles.logo}><Image src={logo} alt='Logo' /></div>
-          <ActiveLink href='/'>Home</ActiveLink>
-          <ActiveLink href='catalog'>Catalog</ActiveLink>
+          <ActiveLink href='/home'>Home</ActiveLink>
+          <ActiveLink href='/catalog'>Catalog</ActiveLink>
           <div className={styles.cart}>
-            <ActiveLink href='cart'>Cart</ActiveLink>
+            <ActiveLink href='/cart'>Cart</ActiveLink>
             {cartDiv}
           </div>
         </div>
