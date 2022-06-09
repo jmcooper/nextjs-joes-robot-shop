@@ -204,7 +204,7 @@ function Catalog() {
         <ActiveLink href={{ pathname: '/catalog', query: { filter: 'Bases' } }} className="button">
           Bases
         </ActiveLink>
-        <ActiveLink href='/catalog' className="button" exact="a">
+        <ActiveLink href='/catalog' className="button" exact={true}>
           All
         </ActiveLink>
       </div>

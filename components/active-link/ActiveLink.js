@@ -6,9 +6,8 @@ export default function ActiveLink({ href, children, className, exact }) {
   let finalHref
 
   function queryParamLengthsMatch(linkQueryParams) {
-    linkQueryParamsCount = linkQueryParams ? linkQueryParams.length : 0
-    if (linkQueryParamsCount !== Object.keys(href.query).length)
-      return false
+    const linkQueryParamsCount = linkQueryParams ? linkQueryParams.length : 0
+    return linkQueryParamsCount === Object.keys(router.query).length
   }
 
   function queryParamsMatch(linkQueryParams) {
@@ -27,7 +26,7 @@ export default function ActiveLink({ href, children, className, exact }) {
     activeClassName = null
   else {
     if (exact && !queryParamLengthsMatch(href.query))
-      return false
+      activeClassName = ''
     else if (!href.query)
       activeClassName = 'active'
     else
