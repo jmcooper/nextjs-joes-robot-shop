@@ -6,7 +6,7 @@ import ActiveLink from '../active-link/ActiveLink'
 import UserSignIn from './user-sign-in/UserSignIn'
 import logo from './logo.png'
 
-export default function SiteHeader() {
+export default function SiteHeader({ user }) {
   const { cart } = useCartContext()
 
   let cartDiv =
@@ -28,7 +28,7 @@ export default function SiteHeader() {
             {cartDiv}
           </div>
         </div>
-        <div className={styles.right}>{<UserSignIn />}</div>
+        <div className={styles.right}>{<UserSignIn user={user} />}</div>
       </div>
     </>
   )

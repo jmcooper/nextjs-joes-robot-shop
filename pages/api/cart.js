@@ -11,7 +11,6 @@ export default async function handler(req, res) {
         res.status(200).json(cart)
       }
       else {
-        process.stdout.write('here2')
         const cartId = newGuid()
         const thirtyDays = 30 * 24 * 60 * 60
 
@@ -30,7 +29,6 @@ export default async function handler(req, res) {
         res.status(200).json(cart)
       }
       catch (error) {
-        process.stdout.write('error', error)
         return res.status(500).json({ error: 'Error saving cart' })
       }
     }

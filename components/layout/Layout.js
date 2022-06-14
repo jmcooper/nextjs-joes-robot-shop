@@ -4,7 +4,7 @@ import SiteHeader from '../site-header/SiteHeader'
 export default function Layout(props) {
   return (
     <CartProvider>
-      <SiteHeader />
+      <SiteHeader user={props.user} />
       {props.children}
     </CartProvider>
   )
