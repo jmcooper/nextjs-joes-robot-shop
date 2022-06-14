@@ -11,7 +11,6 @@ export async function getStaticProps() {
   const client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
   const collection = client.db("joes-robot-shop").collection("products");
 
-  process.stdout.write('getStaticProps\r\n');
   const products = await collection.find({}).toArray();
 
   client.close();
