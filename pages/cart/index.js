@@ -1,48 +1,20 @@
-import React, { useState } from 'react'
-
+import { useCartContext } from '../../context-providers/cart-provider'
 import ProductDetails from '../../components/product-details/ProductDetails'
 import { currencyFormat } from '../../utils/numericFormatters'
 import styles from './Cart.module.scss'
 
 export default function Cart() {
-  const [cartItems, updateCartItems] = useState([
-    {
-      id: 1,
-      description:
-        'A robot head with an unusually large eye and teloscpic neck -- excellent for exploring high spaces.',
-      name: 'Large Cyclops',
-      imageName: 'head-big-eye.png',
-      category: 'Heads',
-      price: 1220.5,
-      discount: 0.2,
-    },
-    {
-      id: 17,
-      description: 'A spring base - great for reaching high places.',
-      name: 'Spring Base',
-      imageName: 'base-spring.png',
-      category: 'Bases',
-      price: 1190.5,
-      discount: 0,
-    },
-    {
-      id: 6,
-      description:
-        'An articulated arm with a claw -- great for reaching around corners or working in tight spaces.',
-      name: 'Articulated Arm',
-      imageName: 'arm-articulated-claw.png',
-      category: 'Arms',
-      price: 275,
-      discount: 0,
-    },
-  ])
+  const { cart, cartDispatch } = useCartContext()
 
-  function removeItemFromCart(cartItem) {
-    updateCartItems(cartItems.filter(item => item !== cartItem))
+  function removeItemFromCart(product) {
+    const newCart = { _id: cart._id }
+    newCart.products = cart.products.filter(item => item !== product)
+    fetch('/api/cart', { method: 'POST', body: JSON.stringify(newCart), headers: { 'Content-Type': 'application/json' }, })
+      .then(() => cartDispatch({ type: 'updateCart', payload: newCart }))
   }
 
   function getCartTotal() {
-    const totalCost = cartItems.reduce((prev, curr) => {
+    const totalCost = cart.products.reduce((prev, curr) => {
       const itemPrice = curr.discount === 0 ? curr.price : curr.price * (1 - curr.discount)
       return prev + itemPrice
     }, 0)
@@ -59,10 +31,10 @@ export default function Cart() {
   function renderCart() {
     return (
       <ul className={styles.cart}>
-        {cartItems.map((cartItem, i) => (
+        {cart.products.map((product, i) => (
           <li className={styles.cartItem} key={i}>
-            <ProductDetails product={cartItem} >
-              <button onClick={() => removeItemFromCart(cartItem)}>Remove</button >
+            <ProductDetails product={product} >
+              <button onClick={() => removeItemFromCart(product)}>Remove</button >
             </ProductDetails >
           </li >
         ))}
@@ -73,7 +45,7 @@ export default function Cart() {
   return (
     <div className={styles.container}>
       <h1 className={styles.header}>Your Cart</h1>
-      {cartItems.length > 0 ? renderCart() : renderEmptyCart()}
+      {cart.products.length > 0 ? renderCart() : renderEmptyCart()}
       <div className={styles.total}>Total: {getCartTotal()}</div>
     </div >
   )

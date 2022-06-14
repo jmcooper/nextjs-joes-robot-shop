@@ -1,17 +1,18 @@
 import Image from 'next/image'
 
+import { useCartContext } from '../../context-providers/cart-provider'
 import styles from './SiteHeader.module.scss'
 import ActiveLink from '../active-link/ActiveLink'
 import UserSignIn from './user-sign-in/UserSignIn'
 import logo from './logo.png'
 
 export default function SiteHeader() {
-  let cart = []
+  const { cart } = useCartContext()
 
   let cartDiv =
-    cart.length === 0 ? null : (
+    cart.products.length === 0 ? null : (
       <div className={styles.cartCount}>
-        <div>{cart.length}</div>
+        <div>{cart.products.length}</div>
       </div>
     )
 
@@ -19,7 +20,7 @@ export default function SiteHeader() {
     <>
       <div className={styles.container}>
         <div className={styles.left}>
-          <div className={styles.logo}><Image src={logo} alt='Logo' /></div>
+          <div className={styles.logo}><Image src={logo} alt="" /></div>
           <ActiveLink href='/home'>Home</ActiveLink>
           <ActiveLink href='/catalog'>Catalog</ActiveLink>
           <div className={styles.cart}>

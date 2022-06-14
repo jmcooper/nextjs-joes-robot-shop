@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.form {
+  display: flex;
+  padding: 30px 100px 50px 100px;
+  flex-direction: column;
+  margin-top: 25px;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+
+  input {
+    margin-top: 25px;
+  }
+
+  input.error {
+    border: 1px solid #d25ca1;
+  }
+
+  em.error {
+    padding: 2px 5px;
+    background-color: #d25ca1;
+    color: white;
+    font-style: normal;
+  }
+
+  .buttons {
+    margin-top: 10px;
+    display: inline-flex;
+    justify-content: flex-end;
+    font-size: 16px;
+  }
+}
+
+
+.logo {
+  width: 170px;
+  align-self: center;
+  margin-bottom: 15px;
+}
+
+.register {
+  font-size: 30px;
+  align-self: center;
+  color: #555;
+}
+
+.subText {
+  font-size: 22px;
+  align-self: center;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.signInError {
+  margin: 25px 0;
+  color: red;
+  font-size: 18px;
+  text-align: center;
+}
