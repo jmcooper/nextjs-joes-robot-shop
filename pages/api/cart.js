@@ -3,8 +3,8 @@ import { v4 as newGuid } from 'uuid'
 import { getCookie, setCookies } from 'cookies-next'
 
 export default async function handler(req, res) {
-  try {
-    if (req.method === 'GET') {
+  if (req.method === 'GET') {
+    try {
       const cookieCartId = getCookie('cartId', { req, res })
       if (cookieCartId) {
         const cart = await getCart(cookieCartId)
@@ -19,22 +19,25 @@ export default async function handler(req, res) {
         return res.status(200).json({ _id: cartId, products: [] })
       }
     }
-    else if (req.method === 'POST') {
-      const cart = req.body
-      if (!cart._id || !cart.products)
-        return res.status(500).json({ error: 'Invalid Cart' })
-
-      try {
-        await saveCart(cart)
-        res.status(200).json(cart)
-      }
-      catch (error) {
-        return res.status(500).json({ error: 'Error saving cart' })
-      }
+    catch (error) {
+      process.stdout.write('error', error)
+      return res.status(500).json({ error: 'Error saving cart' })
     }
+
   }
-  catch (error) {
-    process.stdout.write('error', error)
+  else if (req.method === 'POST') {
+    const cart = req.body
+    if (!cart._id || !cart.products)
+      return res.status(500).json({ error: 'Invalid Cart' })
+
+    try {
+      await saveCart(cart)
+      res.status(200).json(cart)
+    }
+    catch (error) {
+      process.stdout.write('error', error)
+      return res.status(500).json({ error: 'Error saving cart' })
+    }
   }
 }
 
