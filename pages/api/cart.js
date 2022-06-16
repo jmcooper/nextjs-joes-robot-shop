@@ -1,6 +1,7 @@
 import { MongoClient, ServerApiVersion } from 'mongodb'
 import { v4 as newGuid } from 'uuid'
 import { getCookie, setCookies } from 'cookies-next'
+import logger from '../../utils/logger'
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
@@ -14,16 +15,15 @@ export default async function handler(req, res) {
         const cartId = newGuid()
         const thirtyDays = 30 * 24 * 60 * 60
 
-        setCookies(' cartId', cartId, { req, res, maxAge: thirtyDays })
+        setCookies('cartId', cartId, { req, res, maxAge: thirtyDays })
 
         return res.status(200).json({ _id: cartId, products: [] })
       }
     }
-    catch (error) {
-      process.stdout.write('error', error)
-      return res.status(500).json({ error: 'Error saving cart' })
+    catch (err) {
+      logger.error(err)
+      return res.status(500).json('Error retreiving cart')
     }
-
   }
   else if (req.method === 'POST') {
     const cart = req.body
@@ -34,9 +34,9 @@ export default async function handler(req, res) {
       await saveCart(cart)
       res.status(200).json(cart)
     }
-    catch (error) {
-      process.stdout.write('error', error)
-      return res.status(500).json({ error: 'Error saving cart' })
+    catch (err) {
+      logger.error(err)
+      return res.status(500).json('Error saving cart')
     }
   }
 }
