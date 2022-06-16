@@ -29,9 +29,10 @@ export default function Catalog({ products }) {
 
   function addToCart(product) {
     const newCart = { _id: cart._id }
-    newCart.products = [...cart.products, product]
+    newCart.products = [...cart.products, { ...product }]
+    cartDispatch({ type: 'updateCart', payload: newCart })
     fetch('/api/cart', { method: 'POST', body: JSON.stringify(newCart), headers: { 'Content-Type': 'application/json' }, })
-      .then(() => cartDispatch({ type: 'updateCart', payload: newCart }))
+      .catch(() => cartDispatch({ type: 'updateCart', payload: cart }))
   }
 
   return (
