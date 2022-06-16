@@ -1,5 +1,7 @@
 import { initAuth0 } from '@auth0/nextjs-auth0'
 
+console.log('secret', process.env.SESSION_COOKIE_SECRET)
+
 export default initAuth0({
   secret: process.env.SESSION_COOKIE_SECRET,
   issuerBaseURL: process.env.NEXT_PUBLIC_AUTH0_DOMAIN,
@@ -9,10 +11,10 @@ export default initAuth0({
   routes: {
     callback:
       process.env.NEXT_PUBLIC_REDIRECT_URI ||
-      'http://localhost:3000/api/callback',
+      '/api/callback',
     postLogoutRedirect:
       process.env.NEXT_PUBLIC_POST_LOGOUT_REDIRECT_URI ||
-      'http://localhost:3000',
+      '/',
   },
   authorizationParams: {
     response_type: 'code',
