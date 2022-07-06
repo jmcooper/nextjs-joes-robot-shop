@@ -1,7 +1,5 @@
 import { initAuth0 } from '@auth0/nextjs-auth0'
 
-console.log('secret', process.env.SESSION_COOKIE_SECRET)
-
 export default initAuth0({
   secret: process.env.SESSION_COOKIE_SECRET,
   issuerBaseURL: process.env.NEXT_PUBLIC_AUTH0_DOMAIN,

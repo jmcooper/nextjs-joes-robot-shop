@@ -24,7 +24,7 @@ export default function Catalog({ products }) {
   function fetchCart() {
     fetch('/api/cart')
       .then(res => res.json())
-      .then(data => { console.log('setting cart', data); setCart(data) })
+      .then(data => setCart(data))
   }
 
   useEffect(() => fetchCart(), [])

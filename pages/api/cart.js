@@ -26,7 +26,6 @@ export default async function handler(req, res) {
     }
   }
   else if (req.method === 'POST') {
-    console.log('post', req.body)
     const cart = req.body
     if (!cart._id || !cart.products)
       return res.status(500).json({ error: 'Invalid Cart' })
@@ -36,7 +35,7 @@ export default async function handler(req, res) {
       res.status(200).json(cart)
     }
     catch (err) {
-      console.log(err)
+      console.error(err)
       logger.error(err)
       return res.status(500).json('Error saving cart')
     }
