@@ -9,7 +9,7 @@ export default function Layout(props) {
         <title>Joe&apos;s Robot Shop</title>
         <meta name="description" content="Buy robot parts and build awesome robots!" />
       </Head>
-      <SiteHeader user={props.user} />
+      <SiteHeader />
       {props.children}
     </>
   )

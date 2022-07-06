@@ -1,11 +1,11 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import styles from './SiteHeader.module.scss'
 import ActiveLink from '../active-link/ActiveLink'
-import UserSignIn from './user-sign-in/UserSignIn'
 import logo from './logo.png'
 
-export default function SiteHeader({ user }) {
+export default function SiteHeader() {
   return (
     <>
       <div className={styles.container}>
@@ -14,7 +14,7 @@ export default function SiteHeader({ user }) {
           <ActiveLink href='/home'>Home</ActiveLink>
           <ActiveLink href='/catalog'>Catalog</ActiveLink>
         </div>
-        <div className={styles.right}>{<UserSignIn user={user} />}</div>
+        <div className={styles.right}>{<a href="" className="cta">Sign In</a>}</div>
       </div>
     </>
   )
