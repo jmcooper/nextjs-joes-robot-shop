@@ -1,18 +1,23 @@
+$header-font-size: 40px;
+$header-color: #555;
+$header-margin: 26px;
+
 .container {
   display: flex;
 
   .mainLeft {
     flex-grow: 1;
-    margin-right: 10px;
+    margin: 0 10px 0 50px;
 
-    .filters {
+    .header {
+      font-size: $header-font-size;
+      color: $header-color;
+      margin: $header-margin 0;
       display: flex;
-      justify-content: space-between;
-      padding: 25px 200px;
+      justify-content: space-around;
     }
 
     .products {
-      margin: 0 50px;
       border-top: 2px solid #999;
 
       .productItem {
@@ -24,13 +29,13 @@
   .rightSidebar {
     min-width: 360px;
     max-width: 360px;
-    margin-left: 20px;
-    padding-right: 25px;
+    margin: 0 50px 0 25px;
 
     h2 {
-      margin-bottom: 4px;
+      font-size: $header-font-size;
+      color: $header-color;
+      margin: $header-margin 0;
       text-align: center;
-      color: #666;
     }
   }
 }

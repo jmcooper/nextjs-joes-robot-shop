@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
 import { MongoClient, ServerApiVersion } from 'mongodb'
 
 import styles from './Catalog.module.scss'
@@ -20,13 +19,7 @@ export async function getStaticProps() {
 }
 
 export default function Catalog({ products }) {
-  const router = useRouter()
   const [cart, setCart] = useState({ products: [] })
-
-  const filter = router.query.filter
-  const filteredProducts = filter
-    ? products.filter((product) => product.category === filter)
-    : products
 
   function fetchCart() {
     fetch('/api/cart')
@@ -56,26 +49,10 @@ export default function Catalog({ products }) {
     <>
       <div className={styles.container}>
         <div className={styles.mainLeft}>
-          <div className={styles.filters}>
-            <ActiveLink href={{ pathname: '/catalog', query: { filter: 'Heads' } }} className="button">
-              Heads
-            </ActiveLink>
-            <ActiveLink href={{ pathname: '/catalog', query: { filter: 'Arms' } }} className="button">
-              Arms
-            </ActiveLink>
-            <ActiveLink href={{ pathname: '/catalog', query: { filter: 'Torsos' } }} className="button">
-              Torsos
-            </ActiveLink>
-            <ActiveLink href={{ pathname: '/catalog', query: { filter: 'Bases' } }} className="button">
-              Bases
-            </ActiveLink>
-            <ActiveLink href='/catalog' className="button" exact={true}>
-              All
-            </ActiveLink>
-          </div>
+          <h1 className={styles.header}>Catalog</h1>
 
           <ul className={styles.products}>
-            {filteredProducts.map((product, index) => (
+            {products.map((product, index) => (
               <li className={styles.productItem} key={index}>
                 <ProductDetails product={product}>
                   <button className='cta' onClick={() => addToCart(product)}>
