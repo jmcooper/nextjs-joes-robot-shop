@@ -3,39 +3,20 @@ import Image from 'next/image'
 import styles from './ProductDetails.module.scss';
 import { currencyFormat } from '../../utils/numericFormatters'
 
-const ProductDetails = ({ children, product }) => {
-  const strikethroughClass = product.discount > 0 ? styles.strikethrough : '';
-
-  const discountPrice =
-    product.discount === 0 ? null : (
-      <div className={styles.discount}>
-        {' '}
-        {currencyFormat(product.price * (1 - product.discount))}
-      </div>
-    );
-
+const ProductDetails = ({ product, addToCart }) => {
   return (
     <div className={styles.product}>
-      <div className={styles.productDetails}>
+      <div className={styles.image}>
+        <button className={`button ${styles.addToCart}`} onClick={() => addToCart(product)}>Add to Cart</button>
         <Image
-          src={(`/images/robot-images/${product.imageName}`)}
-          width={125}
-          height={125}
+          src={(`/images/albums/${product.imageName}`)}
+          width={400}
+          height={400}
           alt={product.name}
         />
-        <div className={styles.productInfo}>
-          <div className={styles.name}>{product.name}</div>
-          <div className={styles.description}>{product.description}</div>
-          <div className={styles.category}>Category: {product.category}</div>
-        </div>
       </div>
-      <div className={styles.price}>
-        <div className={strikethroughClass}>
-          {currencyFormat(product.price)}
-        </div>
-        {discountPrice}
-        {children}
-      </div>
+      <div className={styles.title}>{product.title}</div>
+      <div className={styles.price}>{currencyFormat(product.price)}</div>
     </div>
   );
 };

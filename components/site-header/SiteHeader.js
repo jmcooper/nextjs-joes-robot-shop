@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Link from 'next/link'
 
 import styles from './SiteHeader.module.scss'
 import ActiveLink from '../active-link/ActiveLink'

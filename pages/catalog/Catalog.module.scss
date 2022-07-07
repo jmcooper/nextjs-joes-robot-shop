@@ -18,17 +18,17 @@ $header-margin: 26px;
     }
 
     .products {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      max-width: 1400px;
       border-top: 2px solid #999;
-
-      .productItem {
-        border-bottom: 2px solid #999;
-      }
     }
   }
 
   .rightSidebar {
-    min-width: 360px;
-    max-width: 360px;
+    min-width: 330px;
+    max-width: 330px;
     margin: 0 50px 0 25px;
 
     h2 {

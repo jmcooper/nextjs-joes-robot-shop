@@ -45,7 +45,7 @@ export default async function handler(req, res) {
 async function getCart(cartId) {
   const uri = process.env.MONGODB_CONNECTION_STRING
   const client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 })
-  const collection = client.db("joes-robot-shop").collection("carts")
+  const collection = client.db("album-shop").collection("carts")
   const carts = await collection.find({ _id: cartId }).toArray()
   const cart = carts[0]
   client.close()
@@ -55,7 +55,7 @@ async function getCart(cartId) {
 async function saveCart(cart) {
   const uri = process.env.MONGODB_CONNECTION_STRING
   const client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 })
-  const collection = client.db("joes-robot-shop").collection("carts")
+  const collection = client.db("album-shop").collection("carts")
 
   await collection.updateOne({ _id: cart._id }, { $set: cart }, { upsert: true })
 

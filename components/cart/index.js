@@ -23,9 +23,7 @@ export default function Cart({ cartItems, removeItemFromCart }) {
       <ul className={styles.cart}>
         {cartItems.map((product, i) => (
           <li className={styles.cartItem} key={i}>
-            <CartItem product={product} >
-              <button onClick={() => removeItemFromCart(product)}>Remove</button >
-            </CartItem >
+            <CartItem product={product} removeItemFromCart={removeItemFromCart} />
           </li >
         ))}
       </ul >

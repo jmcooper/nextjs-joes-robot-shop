@@ -3,19 +3,18 @@ import { MongoClient, ServerApiVersion } from 'mongodb'
 
 import styles from './Catalog.module.scss'
 import ProductDetails from '../../components/product-details/ProductDetails'
-import ActiveLink from '../../components/active-link/ActiveLink'
 import Cart from '../../components/cart'
 
 export async function getStaticProps() {
   const uri = process.env.MONGODB_CONNECTION_STRING;
   const client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-  const collection = client.db("joes-robot-shop").collection("products");
+  const collection = client.db("album-shop").collection("albums");
 
-  const products = await collection.find({}).toArray();
+  const albums = await collection.find({}).toArray();
 
   client.close();
 
-  return { props: { products }, revalidate: 10 }
+  return { props: { products: albums }, revalidate: 10 }
 }
 
 export default function Catalog({ products }) {
@@ -30,6 +29,7 @@ export default function Catalog({ products }) {
   useEffect(() => fetchCart(), [])
 
   function addToCart(product) {
+    console.log('adding')
     const newCart = { _id: cart._id }
     newCart.products = [...cart.products, { ...product }]
     setCart(newCart)
@@ -50,15 +50,10 @@ export default function Catalog({ products }) {
       <div className={styles.container}>
         <div className={styles.mainLeft}>
           <h1 className={styles.header}>Catalog</h1>
-
           <ul className={styles.products}>
             {products.map((product, index) => (
-              <li className={styles.productItem} key={index}>
-                <ProductDetails product={product}>
-                  <button className='cta' onClick={() => addToCart(product)}>
-                    Buy
-                  </button>
-                </ProductDetails>
+              <li key={index}>
+                <ProductDetails product={product} addToCart={addToCart} />
               </li>
             ))}
           </ul>
