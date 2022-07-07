@@ -1,12 +1,18 @@
 .container {
   display: flex;
   flex-direction: column;
+
+  em {
+    font-style: normal;
+    color: #d25ca1;
+  }
+
 }
 
 .hero {
   background-image: url("/images/hero-banner.png");
   background-repeat: no-repeat;
-  height: 300px;
+  height: 250px;
   background-size: cover;
   background-position: center center;
   text-align: center;
@@ -14,35 +20,52 @@
   margin-right: -8px;
 }
 
-.promoted {
+.cta {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 25px;
   border-top: 2px solid #888;
   border-bottom: 2px solid #888;
-  padding: 10px 150px 10px 150px;
+  padding: 10px 100px 10px 100px;
+
+  .images {
+    display: flex;
+
+    * {
+      margin-left: 10px;
+    }
+  }
 
   .image {
-    width: 150px;
-    height: 150px;
+    display: flex;
+    width: 200px;
+    height: 200px;
   }
-}
 
-.promoText {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin: 40px 0 40px 0;
-}
+  .ctaText {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 40px 0;
 
-.promoMainText {
-  font-size: 28px;
-  text-align: center;
-}
+    .ctaMainText {
+      font-size: 34px;
+      text-align: center;
+      margin-bottom: 5px;
+    }
 
-.promoSubText {
-  font-size: 22px;
-  text-align: center;
+    .ctaSubText {
+      font-size: 28px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 10px;
+      width: 200px;
+    }
+  }
 }
 
 .robotPartsCta {
@@ -67,23 +90,22 @@
 
 }
 
-
-
 .whitePaper {
   display: flex;
-  height: 100%;
-  margin: 0 25px;
+  height: 470px;
+  margin: 0 -8px;
 
   .image {
     position: relative;
     width: 75%;
+    font-size: 0;
   }
 
   .text {
     display: flex;
     width: 25%;
     flex-direction: column;
-    background-color: #333;
+    background-color: #111;
     text-align: center;
     justify-content: space-between;
   }
@@ -101,6 +123,10 @@
 
     p {
       margin: 0;
+    }
+
+    em {
+      font-size: 28px;
     }
   }
 
